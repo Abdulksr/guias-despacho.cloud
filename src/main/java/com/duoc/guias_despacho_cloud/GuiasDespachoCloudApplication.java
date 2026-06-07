@@ -1,0 +1,13 @@
+package com.duoc.guias_despacho_cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class GuiasDespachoCloudApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(GuiasDespachoCloudApplication.class, args);
+	}
+
+}
