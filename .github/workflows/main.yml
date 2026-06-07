@@ -62,7 +62,9 @@ jobs:
               -v /mnt/efs/guias:/app/guias \
               -e EFS_PATH=/app/guias \
               -e AWS_BUCKET_NAME=${{ secrets.AWS_BUCKET_NAME }} \
+              -e AWS_REGION=us-east-1 \
               -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
               -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
+              -e AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }} \
               ${{ secrets.DOCKERHUB_USERNAME }}/guias-despacho-cloud:latest
           EOF
