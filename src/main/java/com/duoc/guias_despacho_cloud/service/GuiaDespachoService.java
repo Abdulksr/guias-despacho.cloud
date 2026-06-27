@@ -86,7 +86,7 @@ public class GuiaDespachoService {
         guia.setPedido(pedido);
         guia.setTransportista(transportista);
         guia.setNumeroGuia("GD-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase());
-        guia.setDireccionDestino(pedido.getCliente().getDireccion());
+        guia.setDireccionDestino(pedido.getUsuario().getDireccion());
         guia.setFechaEmision(LocalDate.now());
         guia.setEstado("GENERADA");
 
@@ -98,7 +98,7 @@ public class GuiaDespachoService {
         sb.append("      GUÍA DE DESPACHO: ").append(guia.getNumeroGuia()).append("\n");
         sb.append("=========================================\n");
         sb.append("Fecha de Emisión: ").append(guia.getFechaEmision()).append("\n");
-        sb.append("Cliente Destino: ").append(pedido.getCliente().getNombre()).append("\n");
+        sb.append("Usuario Destino: ").append(pedido.getUsuario().getNombre()).append("\n");
         sb.append("Dirección: ").append(guia.getDireccionDestino()).append("\n");
         sb.append("-----------------------------------------\n");
         sb.append("DATOS DEL TRANSPORTISTA:\n");

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClienteDTO {
+public class UsuarioDTO {
 
     private Long id;
 
@@ -19,6 +19,9 @@ public class ClienteDTO {
     @NotBlank(message = "El email es obligatorio")
     @Email(message = "El email debe tener un formato válido")
     private String email;
+
+    @NotBlank(message = "El rol es obligatorio")
+    private String rol;
 
     @NotBlank(message = "La dirección es obligatoria")
     private String direccion;

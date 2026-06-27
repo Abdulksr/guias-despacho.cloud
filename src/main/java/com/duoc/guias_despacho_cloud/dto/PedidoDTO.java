@@ -17,10 +17,10 @@ public class PedidoDTO {
 
     private Long id;
 
-    @NotNull(message = "El ID del cliente es obligatorio")
-    private Long clienteId;
+    @NotNull(message = "El ID del usuario es obligatorio")
+    private Long usuarioId;
 
-    private String clienteNombre;
+    private String usuarioNombre;
 
     private LocalDate fechaPedido;
 

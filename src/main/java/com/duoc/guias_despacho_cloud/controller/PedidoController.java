@@ -2,7 +2,7 @@ package com.duoc.guias_despacho_cloud.controller;
 
 import com.duoc.guias_despacho_cloud.dto.DetallePedidoDTO;
 import com.duoc.guias_despacho_cloud.dto.PedidoDTO;
-import com.duoc.guias_despacho_cloud.modelo.Cliente;
+import com.duoc.guias_despacho_cloud.modelo.Usuario;
 import com.duoc.guias_despacho_cloud.modelo.DetallePedido;
 import com.duoc.guias_despacho_cloud.modelo.Pedido;
 import com.duoc.guias_despacho_cloud.modelo.Producto;
@@ -36,9 +36,9 @@ public class PedidoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/cliente/{clienteId}")
-    public ResponseEntity<List<Pedido>> obtenerPorClienteId(@PathVariable Long clienteId) {
-        return ResponseEntity.ok(pedidoService.obtenerPorClienteId(clienteId));
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Pedido>> obtenerPorUsuarioId(@PathVariable Long usuarioId) {
+        return ResponseEntity.ok(pedidoService.obtenerPorUsuarioId(usuarioId));
     }
 
     @GetMapping("/estado/{estado}")
@@ -51,9 +51,9 @@ public class PedidoController {
         try {
             Pedido pedido = new Pedido();
 
-            Cliente cliente = new Cliente();
-            cliente.setId(pedidoDTO.getClienteId());
-            pedido.setCliente(cliente);
+            Usuario usuario = new Usuario();
+            usuario.setId(pedidoDTO.getUsuarioId());
+            pedido.setUsuario(usuario);
 
             pedido.setFechaPedido(LocalDate.now());
 

@@ -32,8 +32,8 @@ public class PedidoService {
         return pedidoRepository.findById(id);
     }
 
-    public List<Pedido> obtenerPorClienteId(Long clienteId) {
-        return pedidoRepository.findByClienteId(clienteId);
+    public List<Pedido> obtenerPorUsuarioId(Long usuarioId) {
+        return pedidoRepository.findByUsuarioId(usuarioId);
     }
 
     public List<Pedido> obtenerPorEstado(String estado) {
