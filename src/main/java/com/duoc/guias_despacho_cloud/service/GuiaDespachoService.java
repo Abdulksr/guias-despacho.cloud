@@ -1,5 +1,6 @@
 package com.duoc.guias_despacho_cloud.service;
 
+import com.duoc.guias_despacho_cloud.config.RabbitMQConfig;
 import com.duoc.guias_despacho_cloud.exception.RecursoDuplicadoException;
 import com.duoc.guias_despacho_cloud.exception.RecursoNoEncontradoException;
 import com.duoc.guias_despacho_cloud.modelo.GuiaDespacho;
@@ -16,6 +17,7 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,9 @@ public class GuiaDespachoService {
 
     @Autowired
     private TransportistaRepository transportistaRepository;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     public List<GuiaDespacho> obtenerTodas() {
         return guiaDespachoRepository.findAll();
@@ -144,6 +149,8 @@ public class GuiaDespachoService {
 
         pedido.setEstado("DESPACHADO");
         pedidoRepository.save(pedido);
+
+        rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_GUIAS, RabbitMQConfig.ROUTING_KEY_GUIAS, contenido);
 
         return guiaDespachoRepository.save(guia);
     }
